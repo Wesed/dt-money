@@ -9,6 +9,6 @@
 
 @layer components {
   .column-table {
-    @apply py-4.5 px-8 bg-gray_700 first:rounded-l-lg last:rounded-r-lg;
+    @apply py-4.5 px-8 bg-gray_700 first:rounded-l-lg last:rounded-r-lg text-gray-300 hover:text-gray-100;
   }
 }
