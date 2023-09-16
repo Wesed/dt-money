@@ -17,6 +17,8 @@ export function NewTransactionType({
       className={twMerge(
         'group flex flex-1 cursor-pointer justify-center gap-2 rounded-md bg-gray_700 p-4 text-gray_100 shadow-sm focus:ring-0',
         'data-[state=checked]:text-white',
+        'data-[state=unchecked]:hover:bg-gray_600',
+        'linear transition duration-200',
         `${
           id === 'income'
             ? 'data-[state=checked]:bg-green_500'

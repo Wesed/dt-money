@@ -2,15 +2,24 @@ import * as Dialog from '@radix-ui/react-dialog'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { X } from 'phosphor-react'
 import { NewTransactionType } from './newTransactionType'
+import { twMerge } from 'tailwind-merge'
 
 export function NewTransactionModal() {
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 h-screen w-screen bg-black/75" />
-      <Dialog.Content className="fixed left-2/4 top-2/4 min-w-[32rem] -translate-x-2/4 -translate-y-2/4 rounded-md bg-gray_800  px-12 py-10 focus:ring-0">
-        <Dialog.Title>Nova transação</Dialog.Title>
+      <Dialog.Content
+        className={twMerge(
+          'fixed left-2/4 top-2/4 min-w-[32rem] -translate-x-2/4 -translate-y-2/4',
+          'rounded-md bg-gray_800 px-12 py-10',
+          'focus:ring-0',
+        )}
+      >
+        <Dialog.Title className="text-2xl font-bold text-gray_100">
+          Nova transação
+        </Dialog.Title>
 
-        <Dialog.Close className="absolute right-6 top-6 cursor-pointer bg-transparent text-gray_500 hover:text-green_500 hover:transition hover:duration-200">
+        <Dialog.Close className="absolute right-6 top-6 cursor-pointer bg-transparent text-gray_500 ring-0 hover:text-green_500 hover:transition hover:duration-200">
           <X size={24} />
         </Dialog.Close>
 
