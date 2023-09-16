@@ -1,4 +1,4 @@
-import { FormatValue } from '../utils/formatPrice'
+import { FormatValue } from '../../../../components/utils/formatPrice'
 
 export interface NewReleaseProps {
   description: string

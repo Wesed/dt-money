@@ -1,6 +1,6 @@
-import { Header } from '@/components/Header'
-import { Summary } from '@/components/Summary'
-import { TransactionsPage } from '@/components/Transactions'
+import { TransactionsPage } from '@/pages/Transactions/components/Transactions'
+import { Header } from './components/Header'
+import { Summary } from './components/Summary'
 
 export function Transactions() {
   return (

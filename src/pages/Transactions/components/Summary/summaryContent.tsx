@@ -1,5 +1,5 @@
+import { FormatValue } from '@/components/utils/formatPrice'
 import { ReactNode } from 'react'
-import { FormatValue } from '../utils/formatPrice'
 
 export interface summaryContentProps {
   type: string

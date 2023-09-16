@@ -3,10 +3,10 @@ import { createContext, ReactNode, useEffect, useState } from 'react'
 interface DataTransaction {
   id: number
   description: string
+  type: 'income' | 'outcome'
   price: number
   category: string
   createdAt: string
-  type?: string
 }
 
 interface TransactionContextProps {
@@ -24,7 +24,7 @@ export function TransactionContextProvider({
 }: TransactionContextProviderProps) {
   const [dataTransaction, setDataTransaction] = useState<DataTransaction[]>([])
 
-  // popula a tabela
+  // populando a tabela
   useEffect(() => {
     const getData = async () => {
       const response = await fetch('http://localhost:3333/transactions')
