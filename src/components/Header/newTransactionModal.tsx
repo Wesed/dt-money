@@ -30,8 +30,18 @@ export function NewTransactionModal() {
             placeholder="Descrição"
             required
           />
-          <input type="text" className="input-modal" placeholder="Descrição" />
-          <input type="text" className="input-modal" placeholder="Descrição" />
+          <input
+            type="text"
+            className="input-modal"
+            placeholder="Preço"
+            required
+          />
+          <input
+            type="text"
+            className="input-modal"
+            placeholder="Categoria"
+            required
+          />
 
           <RadioGroup.Root className="mt-2 flex gap-4">
             <NewTransactionType id="income" transactionType="Entrada" />
