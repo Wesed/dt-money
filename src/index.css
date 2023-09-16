@@ -4,11 +4,15 @@
 
 :focus {
   outline: 0;
-  box-shadow: 0 0 0 2px #00875F;
+  box-shadow: 0 0 0 1px #00875F;
 }
 
 @layer components {
   .column-table {
     @apply py-4.5 px-8 bg-gray_700 first:rounded-l-lg last:rounded-r-lg text-gray-300 hover:text-gray-100;
+  }
+
+  .input-modal {
+    @apply rounded-md bg-gray_900 text-gray_300 p-4 placeholder:text-gray_500;
   }
 }

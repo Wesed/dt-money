@@ -1,8 +1,7 @@
+import './index.css'
 import { Header } from './components/Header'
 import { Summary } from './components/Summary'
 import { Transactions } from './components/Transactions'
-import { SearchForm } from './components/Transactions/SearchForm'
-import './index.css'
 
 export function App() {
   return (
