@@ -8,6 +8,7 @@ export function Summary() {
   const [incomeTotal, setIncomeTotal] = useState(0)
   const [outcomeTotal, setOutcomeTotal] = useState(0)
 
+  // setando income, outcome e total
   useEffect(() => {
     if (dataTransaction && dataTransaction.length > 0) {
       const totalIncome = dataTransaction
