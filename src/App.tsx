@@ -1,11 +1,11 @@
-import { TransactionContextProvider } from './contexts/transactionContext'
+import { TransactionsContextProvider } from './contexts/transactionsContext'
 import './index.css'
 import { Transactions } from './pages/Transactions'
 
 export function App() {
   return (
-    <TransactionContextProvider>
+    <TransactionsContextProvider>
       <Transactions />
-    </TransactionContextProvider>
+    </TransactionsContextProvider>
   )
 }

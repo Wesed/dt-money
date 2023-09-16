@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
 
-interface DataTransaction {
+interface DataTransactions {
   id: number
   description: string
   type: 'income' | 'outcome'
@@ -9,20 +9,22 @@ interface DataTransaction {
   createdAt: string
 }
 
-interface TransactionContextProps {
-  dataTransaction: DataTransaction[]
+interface TransactionsContextProps {
+  dataTransactions: DataTransactions[]
 }
 
-export const TransactionContext = createContext({} as TransactionContextProps)
+export const TransactionsContext = createContext({} as TransactionsContextProps)
 
-interface TransactionContextProviderProps {
+interface TransactionsContextProviderProps {
   children: ReactNode
 }
 
-export function TransactionContextProvider({
+export function TransactionsContextProvider({
   children,
-}: TransactionContextProviderProps) {
-  const [dataTransaction, setDataTransaction] = useState<DataTransaction[]>([])
+}: TransactionsContextProviderProps) {
+  const [dataTransactions, setDataTransaction] = useState<DataTransactions[]>(
+    [],
+  )
 
   // populando a tabela
   useEffect(() => {
@@ -35,8 +37,8 @@ export function TransactionContextProvider({
   }, [])
 
   return (
-    <TransactionContext.Provider value={{ dataTransaction }}>
+    <TransactionsContext.Provider value={{ dataTransactions }}>
       {children}
-    </TransactionContext.Provider>
+    </TransactionsContext.Provider>
   )
 }
