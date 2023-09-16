@@ -1,5 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import { X } from 'phosphor-react'
+import { X, ArrowCircleDown, ArrowCircleUp } from 'phosphor-react'
 
 export function NewTransactionModal() {
   return (
@@ -21,6 +21,24 @@ export function NewTransactionModal() {
           />
           <input type="text" className="input-modal" placeholder="Descrição" />
           <input type="text" className="input-modal" placeholder="Descrição" />
+
+          <div className="mt-2 flex gap-4">
+            <button
+              type="button"
+              className="flex flex-1 justify-center gap-2 rounded-md bg-gray_700 p-4 text-gray_300 hover:bg-gray_900 hover:transition hover:duration-200"
+            >
+              <ArrowCircleUp size={24} className="text-green_500" />
+              Entrada
+            </button>
+
+            <button
+              type="button"
+              className="flex flex-1 justify-center gap-2 rounded-md bg-gray_700 p-4 text-gray_300 hover:bg-gray_900 hover:transition hover:duration-200"
+            >
+              <ArrowCircleDown size={24} className="text-red_500" />
+              Saída
+            </button>
+          </div>
 
           <button
             type="submit"
