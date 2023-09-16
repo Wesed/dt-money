@@ -1,14 +1,11 @@
+import { TransactionContextProvider } from './contexts/transactionContext'
 import './index.css'
-import { Header } from './components/Header'
-import { Summary } from './components/Summary'
-import { Transactions } from './components/Transactions'
+import { Transactions } from './pages/Transactions'
 
 export function App() {
   return (
-    <div className=" min-h-screen bg-gray_800 text-gray_100">
-      <Header />
-      <Summary />
+    <TransactionContextProvider>
       <Transactions />
-    </div>
+    </TransactionContextProvider>
   )
 }

@@ -3,16 +3,16 @@ import { FormatValue } from '../utils/formatPrice'
 export interface NewReleaseProps {
   description: string
   value: number
-  tag: string
-  date: string
+  category: string
+  createdAt: string
   type?: string
 }
 
 export function NewRelease({
   description,
   value,
-  tag,
-  date,
+  category,
+  createdAt,
   type = 'outcome',
 }: NewReleaseProps) {
   return (
@@ -25,8 +25,8 @@ export function NewRelease({
           <span className="text-red_300">- {FormatValue(value)}</span>
         )}
       </td>
-      <td className="column-table">{tag}</td>
-      <td className="column-table">{date}</td>
+      <td className="column-table">{category}</td>
+      <td className="column-table">{createdAt}</td>
     </tr>
   )
 }
