@@ -5,13 +5,13 @@ import { NewTransactionType } from './newTransactionType'
 import { twMerge } from 'tailwind-merge'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
   price: z.number(),
   category: z.string(),
-  // type: z.enum(['income', 'outcome']),
+  type: z.enum(['income', 'outcome']),
 })
 
 type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>
@@ -20,6 +20,7 @@ export function NewTransactionModal() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { isSubmitting },
   } = useForm<NewTransactionFormInputs>({
     resolver: zodResolver(newTransactionFormSchema),
@@ -73,10 +74,25 @@ export function NewTransactionModal() {
             {...register('category')}
           />
 
-          <RadioGroup.Root className="mt-2 flex gap-4">
-            <NewTransactionType id="income" transactionType="Entrada" />
-            <NewTransactionType id="outcome" transactionType="Saída" />
-          </RadioGroup.Root>
+          <Controller
+            control={control}
+            name="type"
+            render={({ field }) => {
+              return (
+                <RadioGroup.Root
+                  onValueChange={field.onChange}
+                  className="mt-2 flex gap-4"
+                  value={field.value}
+                >
+                  <NewTransactionType
+                    value="income"
+                    transactionType="Entrada"
+                  />
+                  <NewTransactionType value="outcome" transactionType="Saída" />
+                </RadioGroup.Root>
+              )
+            }}
+          />
 
           <button
             disabled={isSubmitting}
