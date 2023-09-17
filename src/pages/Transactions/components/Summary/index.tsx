@@ -1,7 +1,5 @@
 import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from 'phosphor-react'
 import { SummaryContent } from './summaryContent'
-import { TransactionsContext } from '@/contexts/transactionsContext'
-import { useContext, useEffect, useState } from 'react'
 import { useSummary } from '@/hooks/useSummary'
 
 export function Summary() {

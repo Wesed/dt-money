@@ -3,8 +3,32 @@ import * as RadioGroup from '@radix-ui/react-radio-group'
 import { X } from 'phosphor-react'
 import { NewTransactionType } from './newTransactionType'
 import { twMerge } from 'tailwind-merge'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+
+const newTransactionFormSchema = z.object({
+  description: z.string(),
+  price: z.number(),
+  category: z.string(),
+  // type: z.enum(['income', 'outcome']),
+})
+
+type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>
 
 export function NewTransactionModal() {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<NewTransactionFormInputs>({
+    resolver: zodResolver(newTransactionFormSchema),
+  })
+
+  function handleCreateNewTransaction(data: NewTransactionFormInputs) {
+    console.log(data)
+  }
+
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 h-screen w-screen bg-black/75" />
@@ -23,24 +47,30 @@ export function NewTransactionModal() {
           <X size={24} />
         </Dialog.Close>
 
-        <form className="mt-8 flex flex-col gap-4">
+        <form
+          onSubmit={handleSubmit(handleCreateNewTransaction)}
+          className="mt-8 flex flex-col gap-4"
+        >
           <input
             type="text"
             className="input-modal"
             placeholder="Descrição"
             required
+            {...register('description')}
           />
           <input
             type="text"
             className="input-modal"
             placeholder="Preço"
             required
+            {...register('price', { valueAsNumber: true })}
           />
           <input
             type="text"
             className="input-modal"
             placeholder="Categoria"
             required
+            {...register('category')}
           />
 
           <RadioGroup.Root className="mt-2 flex gap-4">
@@ -49,10 +79,11 @@ export function NewTransactionModal() {
           </RadioGroup.Root>
 
           <button
+            disabled={isSubmitting}
             type="submit"
-            className="mt-6 h-14 cursor-pointer rounded-md bg-green_500 px-5 py-0 font-bold text-white hover:bg-green_700"
+            className="mt-6 h-14 cursor-pointer rounded-md bg-green_500 px-5 py-0 font-bold text-white enabled:hover:bg-green_700 disabled:cursor-wait disabled:opacity-60"
           >
-            Cadastrar
+            {isSubmitting ? 'Cadastrando...' : 'Cadastrar'}
           </button>
         </form>
       </Dialog.Content>
