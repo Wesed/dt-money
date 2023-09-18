@@ -1,4 +1,4 @@
-import { FormatValue } from '@/components/utils/formatPrice'
+import { priceFormatter } from '@/components/utils/formatter'
 import { ReactNode } from 'react'
 
 export interface summaryContentProps {
@@ -23,7 +23,9 @@ export function SummaryContent({
         {icon}
       </header>
 
-      <strong className="mt-4 block text-3xl">{FormatValue(value)}</strong>
+      <strong className="mt-4 block text-3xl">
+        {priceFormatter.format(value)}
+      </strong>
     </div>
   )
 }

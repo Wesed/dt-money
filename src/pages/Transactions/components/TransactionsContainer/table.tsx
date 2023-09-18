@@ -19,7 +19,7 @@ export function TableTransactions() {
                   </span>
                 ) : (
                   <span className="text-red_300">
-                    {priceFormatter.format(transaction.price)}
+                    - {priceFormatter.format(transaction.price)}
                   </span>
                 )}
               </td>

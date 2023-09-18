@@ -33,7 +33,7 @@ export function TransactionsContextProvider({
       params: {
         q: query,
         _sort: 'createdAt',
-        _order: 'asc',
+        _order: 'desc',
         // filtro
         // type: 'outcome',
       },
