@@ -255,6 +255,14 @@
       "type": "income",
       "createdAt": "2023-09-18T18:46:18.981Z",
       "id": 32
+    },
+    {
+      "description": "rocketseat",
+      "price": 1980,
+      "category": "curso",
+      "type": "outcome",
+      "createdAt": "2023-09-18T19:14:15.594Z",
+      "id": 33
     }
   ]
 }

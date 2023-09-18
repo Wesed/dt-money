@@ -1,9 +1,14 @@
-import { useContext } from 'react'
 import { TransactionsContext } from '@/contexts/transactionsContext'
 import { dateFormatter, priceFormatter } from '@/components/utils/formatter'
+import { useContextSelector } from 'use-context-selector'
 
 export function TableTransactions() {
-  const { dataTransactions } = useContext(TransactionsContext)
+  const dataTransactions = useContextSelector(
+    TransactionsContext,
+    (context) => {
+      return context.dataTransactions
+    },
+  )
 
   return (
     <div className="flex flex-col items-center gap-6">
