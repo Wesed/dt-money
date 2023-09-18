@@ -74,7 +74,7 @@ export function NewTransactionModal({ closeModal }: newTransactionModalProps) {
             {...register('description')}
           />
           <input
-            type="text"
+            type="number"
             className="input-modal"
             placeholder="Preço"
             required

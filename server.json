@@ -231,6 +231,30 @@
       "type": "outcome",
       "createdAt": "2023-09-18T18:35:51.480Z",
       "id": 29
+    },
+    {
+      "description": "venda de curso",
+      "price": 650,
+      "category": "curso",
+      "type": "income",
+      "createdAt": "2023-09-18T18:39:29.256Z",
+      "id": 30
+    },
+    {
+      "description": "licença microsoft",
+      "price": 250,
+      "category": "licenças ",
+      "type": "outcome",
+      "createdAt": "2023-09-18T18:40:29.269Z",
+      "id": 31
+    },
+    {
+      "description": "Dividendos FIIs",
+      "price": 655,
+      "category": "FI",
+      "type": "income",
+      "createdAt": "2023-09-18T18:46:18.981Z",
+      "id": 32
     }
   ]
 }
