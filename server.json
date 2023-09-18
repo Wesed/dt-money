@@ -263,6 +263,22 @@
       "type": "outcome",
       "createdAt": "2023-09-18T19:14:15.594Z",
       "id": 33
+    },
+    {
+      "description": "padaria",
+      "price": 20,
+      "category": "despesas",
+      "type": "outcome",
+      "createdAt": "2023-09-18T21:16:50.782Z",
+      "id": 34
+    },
+    {
+      "description": "teste",
+      "price": 2,
+      "category": "ddd",
+      "type": "income",
+      "createdAt": "2023-09-18T21:17:20.611Z",
+      "id": 35
     }
   ]
 }

@@ -1,5 +1,5 @@
 import { api } from '@/lib/axios'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { createContext } from 'use-context-selector'
 
 interface DataTransactions {
@@ -37,7 +37,7 @@ export function TransactionsContextProvider({
     [],
   )
 
-  const fetchTransactions = async (query?: string) => {
+  const fetchTransactions = useCallback(async (query?: string) => {
     const response = await api.get('transactions', {
       params: {
         q: query,
@@ -48,26 +48,29 @@ export function TransactionsContextProvider({
       },
     })
     setDataTransactions(response.data)
-  }
+  }, [])
 
-  const createTransaction = async (data: CreateTransactionInput) => {
-    const { description, price, category, type } = data
+  const createTransaction = useCallback(
+    async (data: CreateTransactionInput) => {
+      const { description, price, category, type } = data
 
-    const response = await api.post('transactions', {
-      description,
-      price,
-      category,
-      type,
-      createdAt: new Date(),
-    })
+      const response = await api.post('transactions', {
+        description,
+        price,
+        category,
+        type,
+        createdAt: new Date(),
+      })
 
-    setDataTransactions((state) => [response.data, ...state])
-  }
+      setDataTransactions((state) => [response.data, ...state])
+    },
+    [],
+  )
 
   // populando a tabela
   useEffect(() => {
     fetchTransactions()
-  }, [])
+  }, [fetchTransactions])
 
   return (
     <TransactionsContext.Provider
