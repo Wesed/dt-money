@@ -32,6 +32,10 @@ export function TransactionsContextProvider({
     const response = await api.get('transactions', {
       params: {
         q: query,
+        _sort: 'createdAt',
+        _order: 'asc',
+        // filtro
+        // type: 'outcome',
       },
     })
     setDataTransaction(response.data)
