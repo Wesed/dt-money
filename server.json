@@ -223,6 +223,14 @@
       "type": "income",
       "createdAt": "2023-09-18T18:09:12.750Z",
       "id": 28
+    },
+    {
+      "description": "vermífugo",
+      "price": 80,
+      "category": "pet",
+      "type": "outcome",
+      "createdAt": "2023-09-18T18:35:51.480Z",
+      "id": 29
     }
   ]
 }

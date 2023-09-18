@@ -10,9 +10,17 @@ interface DataTransactions {
   createdAt: string
 }
 
+interface CreateTransactionInput {
+  description: string
+  price: number
+  category: string
+  type: 'income' | 'outcome'
+}
+
 interface TransactionsContextProps {
   dataTransactions: DataTransactions[]
   fetchTransactions: (query?: string) => Promise<void>
+  createTransaction: (data: CreateTransactionInput) => Promise<void>
 }
 
 export const TransactionsContext = createContext({} as TransactionsContextProps)
@@ -24,7 +32,7 @@ interface TransactionsContextProviderProps {
 export function TransactionsContextProvider({
   children,
 }: TransactionsContextProviderProps) {
-  const [dataTransactions, setDataTransaction] = useState<DataTransactions[]>(
+  const [dataTransactions, setDataTransactions] = useState<DataTransactions[]>(
     [],
   )
 
@@ -38,7 +46,21 @@ export function TransactionsContextProvider({
         // type: 'outcome',
       },
     })
-    setDataTransaction(response.data)
+    setDataTransactions(response.data)
+  }
+
+  const createTransaction = async (data: CreateTransactionInput) => {
+    const { description, price, category, type } = data
+
+    const response = await api.post('transactions', {
+      description,
+      price,
+      category,
+      type,
+      createdAt: new Date(),
+    })
+
+    setDataTransactions((state) => [response.data, ...state])
   }
 
   // populando a tabela
@@ -48,7 +70,7 @@ export function TransactionsContextProvider({
 
   return (
     <TransactionsContext.Provider
-      value={{ dataTransactions, fetchTransactions }}
+      value={{ dataTransactions, fetchTransactions, createTransaction }}
     >
       {children}
     </TransactionsContext.Provider>
