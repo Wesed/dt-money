@@ -6,6 +6,11 @@ import { twMerge } from 'tailwind-merge'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
+import { api } from '@/lib/axios'
+
+interface newTransactionModalProps {
+  closeModal: () => void
+}
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
@@ -16,7 +21,7 @@ const newTransactionFormSchema = z.object({
 
 type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>
 
-export function NewTransactionModal() {
+export function NewTransactionModal({ closeModal }: newTransactionModalProps) {
   const {
     register,
     handleSubmit,
@@ -26,8 +31,18 @@ export function NewTransactionModal() {
     resolver: zodResolver(newTransactionFormSchema),
   })
 
-  function handleCreateNewTransaction(data: NewTransactionFormInputs) {
-    console.log(data)
+  async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
+    const { description, price, category, type } = data
+
+    await api.post('transactions', {
+      description,
+      price,
+      category,
+      type,
+      createdAt: new Date(),
+    })
+
+    closeModal()
   }
 
   return (

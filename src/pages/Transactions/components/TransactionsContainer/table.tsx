@@ -7,7 +7,7 @@ export function TableTransactions() {
 
   return (
     <div className="flex flex-col items-center gap-6">
-      <table className="w-full border-separate border-spacing-x-0 border-spacing-y-2">
+      <table className="w-full border-separate border-spacing-x-0 border-spacing-y-2 capitalize">
         <tbody>
           {dataTransactions?.map((transaction) => (
             <tr key={transaction.id}>
