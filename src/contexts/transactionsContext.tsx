@@ -1,3 +1,4 @@
+import { api } from '@/lib/axios'
 import { createContext, ReactNode, useEffect, useState } from 'react'
 
 interface DataTransactions {
@@ -28,16 +29,12 @@ export function TransactionsContextProvider({
   )
 
   const fetchTransactions = async (query?: string) => {
-    const url = new URL('http://localhost:3333/transactions')
-
-    if (query) {
-      // se tiver query, adiciona a busca na url
-      url.searchParams.append('q', query)
-    }
-
-    const response = await fetch(url)
-    const dataType = await response.json()
-    setDataTransaction(dataType)
+    const response = await api.get('transactions', {
+      params: {
+        q: query,
+      },
+    })
+    setDataTransaction(response.data)
   }
 
   // populando a tabela
