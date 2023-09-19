@@ -1,4 +1,5 @@
 import { TransactionsContext } from '@/contexts/transactionsContext'
+import { useMemo } from 'react'
 import { useContextSelector } from 'use-context-selector'
 
 export function useSummary() {
@@ -10,24 +11,26 @@ export function useSummary() {
   )
 
   // setando income, outcome e total
-  const summary = dataTransactions.reduce(
-    (accumulator, currentTransaction) => {
-      if (currentTransaction.type === 'income') {
-        accumulator.income += currentTransaction.price
-        accumulator.total += currentTransaction.price
-      } else {
-        accumulator.outcome += currentTransaction.price
-        accumulator.total -= currentTransaction.price
-      }
-      return accumulator
-    },
-    {
-      // setando os valores iniciais
-      income: 0,
-      outcome: 0,
-      total: 0,
-    },
-  )
+  const summary = useMemo(() => {
+    return dataTransactions.reduce(
+      (accumulator, currentTransaction) => {
+        if (currentTransaction.type === 'income') {
+          accumulator.income += currentTransaction.price
+          accumulator.total += currentTransaction.price
+        } else {
+          accumulator.outcome += currentTransaction.price
+          accumulator.total -= currentTransaction.price
+        }
+        return accumulator
+      },
+      {
+        // setando os valores iniciais
+        income: 0,
+        outcome: 0,
+        total: 0,
+      },
+    )
+  }, [dataTransactions])
 
   return summary
 }

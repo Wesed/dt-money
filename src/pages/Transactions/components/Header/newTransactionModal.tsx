@@ -56,7 +56,6 @@ export function NewTransactionModal({ closeModal }: newTransactionModalProps) {
         className={twMerge(
           'fixed left-2/4 top-2/4 min-w-[32rem] -translate-x-2/4 -translate-y-2/4',
           'rounded-md bg-gray_800 px-12 py-10',
-          'focus:ring-0',
         )}
       >
         <Dialog.Title className="text-2xl font-bold text-gray_100">
