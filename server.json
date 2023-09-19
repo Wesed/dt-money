@@ -279,6 +279,22 @@
       "type": "income",
       "createdAt": "2023-09-18T21:17:20.611Z",
       "id": 35
+    },
+    {
+      "description": "teste2",
+      "price": 3,
+      "category": "teste2",
+      "type": "income",
+      "createdAt": "2023-09-19T13:44:03.461Z",
+      "id": 36
+    },
+    {
+      "description": "teste3",
+      "price": 2,
+      "category": "teste3",
+      "type": "outcome",
+      "createdAt": "2023-09-19T13:44:44.487Z",
+      "id": 37
     }
   ]
 }
