@@ -9,7 +9,7 @@ export function Transactions() {
       <Header />
       <Summary />
 
-      <div className="mx-auto my-16 flex max-w-maxWidth flex-col gap-6 p-6">
+      <div className="mx-auto my-20 flex max-w-maxWidth flex-col gap-6 p-6">
         <SearchForm />
         <TableTransactions />
       </div>

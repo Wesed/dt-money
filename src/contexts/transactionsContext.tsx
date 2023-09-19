@@ -37,18 +37,22 @@ export function TransactionsContextProvider({
     [],
   )
 
-  const fetchTransactions = useCallback(async (query?: string) => {
-    const response = await api.get('transactions', {
-      params: {
-        q: query,
-        _sort: 'createdAt',
-        _order: 'desc',
-        // filtro
-        // type: 'outcome',
-      },
-    })
-    setDataTransactions(response.data)
-  }, [])
+  const fetchTransactions = useCallback(
+    async (query?: string, filter?: string) => {
+      console.log(query)
+      const response = await api.get('transactions', {
+        params: {
+          q: query,
+          _sort: 'createdAt',
+          _order: 'desc',
+          // filtro
+          type: filter,
+        },
+      })
+      setDataTransactions(response.data)
+    },
+    [],
+  )
 
   const createTransaction = useCallback(
     async (data: CreateTransactionInput) => {

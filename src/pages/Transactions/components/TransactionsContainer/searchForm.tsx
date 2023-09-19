@@ -1,20 +1,21 @@
 import { TransactionsContext } from '@/contexts/transactionsContext'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Funnel, MagnifyingGlass } from 'phosphor-react'
-import { memo } from 'react'
-import { useForm } from 'react-hook-form'
-import { twMerge } from 'tailwind-merge'
+import { Check, FadersHorizontal, MagnifyingGlass } from 'phosphor-react'
+import { Controller, useForm } from 'react-hook-form'
 import { useContextSelector } from 'use-context-selector'
 import * as z from 'zod'
-import { FilterTable } from './filterTable'
+import * as Select from '@radix-ui/react-select'
+import { FilterItem } from './filterItem'
+import { twMerge } from 'tailwind-merge'
 
 const searchFormSchema = z.object({
   query: z.string(),
+  filter: z.string().optional(),
 })
 
 type SearchFormInputs = z.infer<typeof searchFormSchema>
 
-function SearchFormComponent() {
+export function SearchForm() {
   const fetchTransactions = useContextSelector(
     TransactionsContext,
     (context) => {
@@ -23,6 +24,7 @@ function SearchFormComponent() {
   )
 
   const {
+    control,
     register,
     handleSubmit,
     reset,
@@ -32,8 +34,7 @@ function SearchFormComponent() {
   })
 
   async function handleSearchTransactions(data: SearchFormInputs) {
-    await fetchTransactions(data.query)
-    // triar o memo daq dps, ele nao e necessario aq, pois retorna pouco html
+    await fetchTransactions(data.query, data.filter)
     reset()
   }
 
@@ -51,7 +52,47 @@ function SearchFormComponent() {
         />
         {/* filtro */}
         <div className="absolute right-0 mr-3 flex">
-          <FilterTable />
+          <Controller
+            control={control}
+            name="filter"
+            render={({ field }) => {
+              return (
+                <Select.Root onValueChange={field.onChange} value={field.value}>
+                  <Select.Trigger
+                    className={twMerge(
+                      `flex w-40 items-center justify-between gap-2 p-2`,
+                      'rounded-md border border-gray_600 text-gray_500 shadow-sm',
+                      'transition-all duration-200',
+                      'outline-0 focus:ring-0',
+                    )}
+                  >
+                    <Select.Value
+                      className="text-gray_300"
+                      placeholder="Filtrar por..."
+                    />
+
+                    <Select.Icon>
+                      <FadersHorizontal size={20} className="text-gray_500" />
+                    </Select.Icon>
+                  </Select.Trigger>
+
+                  <Select.Portal>
+                    <Select.Content
+                      side="top"
+                      position="popper"
+                      sideOffset={8}
+                      className="z-10 w-[--radix-select-trigger-width] overflow-hidden rounded-md bg-gray_700 focus:ring-0"
+                    >
+                      <Select.Viewport>
+                        <FilterItem value="income" description="Entradas" />
+                        <FilterItem value="outcome" description="Saídas" />
+                      </Select.Viewport>
+                    </Select.Content>
+                  </Select.Portal>
+                </Select.Root>
+              )
+            }}
+          ></Controller>
         </div>
       </div>
 
@@ -65,5 +106,3 @@ function SearchFormComponent() {
     </form>
   )
 }
-
-export const SearchForm = memo(SearchFormComponent)

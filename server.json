@@ -159,6 +159,14 @@
       "category": "Consultoria",
       "price": 2750,
       "createdAt": "2023-08-30T08:00:00.000Z"
+    },
+    {
+      "description": "teste 2",
+      "price": 5,
+      "category": "teste 2",
+      "type": "income",
+      "createdAt": "2023-09-19T21:24:19.788Z",
+      "id": 21
     }
   ]
 }
