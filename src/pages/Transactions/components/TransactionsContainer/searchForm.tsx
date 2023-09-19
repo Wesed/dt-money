@@ -1,6 +1,6 @@
 import { TransactionsContext } from '@/contexts/transactionsContext'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Check, FadersHorizontal, MagnifyingGlass } from 'phosphor-react'
+import { FadersHorizontal, MagnifyingGlass } from 'phosphor-react'
 import { Controller, useForm } from 'react-hook-form'
 import { useContextSelector } from 'use-context-selector'
 import * as z from 'zod'

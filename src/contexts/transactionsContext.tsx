@@ -20,7 +20,7 @@ interface CreateTransactionInput {
 
 interface TransactionsContextProps {
   dataTransactions: DataTransactions[]
-  fetchTransactions: (query?: string) => Promise<void>
+  fetchTransactions: (query?: string, filter?: string) => Promise<void>
   createTransaction: (data: CreateTransactionInput) => Promise<void>
 }
 
@@ -39,7 +39,6 @@ export function TransactionsContextProvider({
 
   const fetchTransactions = useCallback(
     async (query?: string, filter?: string) => {
-      console.log(query)
       const response = await api.get('transactions', {
         params: {
           q: query,
